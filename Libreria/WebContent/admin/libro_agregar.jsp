@@ -26,6 +26,15 @@
 </form>
 </select>
 
+
+<p>Editorial</p>
+<select>
+<% for(int i=0;i<editorials.size();i++){%>
+	<option value="<%=generos.get(i).getId()%>"><%=generos.get(i).getNombres()%></option>
+<% } %>
+</form>
+</select>
+
 <p>Titulo</p>
 <input type="text" name="titulos"/>
 <p>Precio</p>
