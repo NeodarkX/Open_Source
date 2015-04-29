@@ -48,7 +48,7 @@ public class Genero_Agregar extends HttpServlet {
 			Connection con = DriverManager.getConnection(url, "root", "root");
 			Statement stmt = con.createStatement();
 			int fila = stmt.executeUpdate("insert into genero"
-					+ " (nombres, descripcion) "
+					+ " (nombre, descripcion) "
 					+ " values ('"+nombres+"', '"+descripcion+"')");
 			if(fila == 1){
 				request.setAttribute("mensaje", "Datos guardados correctamente");

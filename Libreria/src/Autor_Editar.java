@@ -45,7 +45,7 @@ public class Autor_Editar extends HttpServlet {
 			Statement stmt = con.createStatement();
 			
 			ResultSet rs =
-					stmt.executeQuery("select * from autores where id=" + codigo);
+					stmt.executeQuery("select * from autor where id=" + codigo);
 			
 			if( rs.next() ){
 				AutorBean autor = new AutorBean();

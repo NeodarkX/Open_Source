@@ -48,7 +48,7 @@ public class Usuario extends HttpServlet {
 		try {
 			String usuario = request.getParameter("usuario");
 			String clave = request.getParameter("clave");
-			
+			String select[] = request.getParameterValues("remember");
 			Class.forName("com.mysql.jdbc.Driver");
 			
 			String url = "jdbc:mysql://localhost:3306/libreria";
@@ -56,12 +56,12 @@ public class Usuario extends HttpServlet {
 			
 			Statement stmt = con.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("select * from administradores "
+			ResultSet rs = stmt.executeQuery("select * from administrador "
 					+ " where usuario='"+usuario+"' and clave='"+clave+"'");
 			
 			if(rs.next()){
 				HttpSession sesion = request.getSession();
-				sesion.setAttribute("nombre", rs.getString("nombre") );
+				sesion.setAttribute("nombre", rs.getString("usuario") );
 				
 				getServletContext().getRequestDispatcher("/admin/principal.jsp").forward(request, response);
 				

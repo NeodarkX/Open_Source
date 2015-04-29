@@ -42,32 +42,33 @@ public class Agregar_Libro extends HttpServlet {
 			
 			Statement stmt = con.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("select id, nombres, descripcion from libro");
+			ResultSet rs = stmt.executeQuery("select idgenero, nombre, descripcion from genero");
 	
 			Vector<GeneroBean> generos = new Vector<GeneroBean>();
+			
 			GeneroBean genero = null;
 			while(rs.next()){
 				genero = new GeneroBean();
-				genero.setId(rs.getInt("id"));
-				genero.setNombres(rs.getString("nombres"));
+				genero.setId(rs.getInt("idgenero"));
+				genero.setNombres(rs.getString("nombre"));
 				genero.setDescripcion(rs.getString("descripcion"));
-				
 				generos.add(genero);
 	
 			}
 			
-			rs = stmt.executeQuery("select id, nombres from editorial");
+			
+			ResultSet rss = stmt.executeQuery("select ideditorial, nombres from editorial");
 			Vector<EditorialBean> editorials = new Vector<EditorialBean>();
 			EditorialBean editorial = null;
-			while(rs.next()){
+			while(rss.next()){
 				editorial = new EditorialBean();
-				editorial.setId(rs.getInt("id"));
-				editorial.setNombres(rs.getString("nombres"));				
+				editorial.setId(rss.getInt("ideditorial"));
+				editorial.setNombres(rss.getString("nombres"));				
 				editorials.add(editorial);
 	
 			}
-			
-			request.setAttribute("listaeditorial", editorial);
+			request.setAttribute("listaeditorials", editorials);
+			request.setAttribute("listageneros", generos);
 
 			
 			getServletContext().getRequestDispatcher("/admin/libro_agregar.jsp").forward(request, response);
@@ -84,9 +85,10 @@ public class Agregar_Libro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			String genero = request.getParameter("genero");
-			String titulo = request.getParameter("titulo");
-			String isbn = request.getParameter("isbn");
+			String[] genero = request.getParameterValues("genero");
+			String[] editorial = request.getParameterValues("editorial");
+			String titulo = request.getParameter("titulos");
+			String isbn = request.getParameter("ISBN");
 			String sinopsis = request.getParameter("sinopsis");
 			Class.forName("com.mysql.jdbc.Driver");
 			
@@ -95,9 +97,9 @@ public class Agregar_Libro extends HttpServlet {
 			
 			Statement stmt = con.createStatement();
 			
-			int filas = stmt.executeUpdate("insert into autores"
-					+ " (genero, titulo, isbn,sinopsis) "
-					+ " values ('"+genero+"', '"+titulo+"', '"+isbn+"', '"+sinopsis+"')");
+			int filas = stmt.executeUpdate("insert into libro"
+					+ " (genero,editorial, titulo, isbn,sinopsis) "
+					+ " values ('"+genero[0]+"', '"+editorial[0]+"', '"+titulo+"', '"+isbn+"', '"+sinopsis+"')");
 			
 			if(filas == 1){
 				request.setAttribute("mensaje", "Datos actualizados");

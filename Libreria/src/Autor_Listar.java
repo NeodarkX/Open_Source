@@ -43,7 +43,7 @@ public class Autor_Listar extends HttpServlet {
 			
 			Statement stmt = con.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("select id, nombres, apellidos from autores");
+			ResultSet rs = stmt.executeQuery("select id, nombres, apellidos from autor");
 			
 			//Vector<Integer> ids = new Vector<Integer>();
 			//Vector<String> nombres = new Vector<String>();

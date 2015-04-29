@@ -51,7 +51,7 @@ public class Autor_Agregar extends HttpServlet {
 			
 			Statement stmt = con.createStatement();
 			
-			int filas = stmt.executeUpdate("insert into autores"
+			int filas = stmt.executeUpdate("insert into autor"
 					+ " (nombres, apellidos, nacionalidad) "
 					+ " values ('"+nombres+"', '"+apellidos+"', '"+nacionalidad+"')");
 			

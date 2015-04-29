@@ -12,38 +12,35 @@
 <% String nombre = (String)session.getAttribute("nombre"); %>s
 <body>
 <%
-	Vector<GeneroBean> generos = (Vector<GeneroBean>)request.getAttribute("listageneros");
-	Vector<EditorialBean> editorials = (Vector<EditorialBean>)request.getAttribute("listaeditorials");
+
+
+Vector<GeneroBean> generos = (Vector<GeneroBean>)request.getAttribute("listageneros");
+Vector<EditorialBean> editorials = (Vector<EditorialBean>)request.getAttribute("listaeditorials");
 %>
 
 <h1>Registro de libros</h1>
-<form method="post">
-<p>Genero</p>
-<select>
+<form action="<%=getServletContext().getContextPath() %>/Agregar_Libro" method="post">
+	<p>Genero</p>
+	<select name="genero">
+	
 <% for(int i=0;i<generos.size();i++){%>
-	<option value="<%=generos.get(i).getId()%>"><%=generos.get(i).getNombres()%></option>
+	<option value="<%=generos.get(i).getNombres()%>"><%=generos.get(i).getNombres()%></option>
 <% } %>
+	</select>
+	<p>Editorial</p>
+	<select name="editorial">
+	<% for(int i=0;i<editorials.size();i++){%>
+	<option value="<%=editorials.get(i).getNombres()%>"><%=editorials.get(i).getNombres()%></option>
+	<% } %>
+	</select>
+	<p>Titulo</p>
+	<input type="text" name="titulos"/>
+	<p>ISBN</p>
+	<input type="text" name="ISBN" />
+	<p>Sinopsis</p>
+	<textarea name="sinopsis" rows="5">
+	</textarea>
+	<p><input type="submit" name="" value="Guardar Libro" /></p>
 </form>
-</select>
-
-
-<p>Editorial</p>
-<select>
-<% for(int i=0;i<editorials.size();i++){%>
-	<option value="<%=generos.get(i).getId()%>"><%=generos.get(i).getNombres()%></option>
-<% } %>
-</form>
-</select>
-
-<p>Titulo</p>
-<input type="text" name="titulos"/>
-<p>Precio</p>
-<input type="text" name="Precio" />
-<p>ISBN</p>
-<input type="text" name="ISBN" />
-<p>Sinopsis</p>
-<textarea name="sinopsis" rows="5">
-</textarea>
-<p><input type="submit" name="" value="Guardar Libro" /></p>
 </body>
 </html>

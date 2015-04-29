@@ -14,7 +14,8 @@
 <ul>
 <li><a href="admin/autor_agregar.jsp">Agregar autor</a></li>
 <li><a href="admin/genero_crear.jsp">Agregar genero</a></li>
-<li><a href="admin/editorial_crear.jsp">Agregar genero</a></li>
+<li><a href="admin/editorial_crear.jsp">Agregar editorial</a></li>
+<li><a href="Agregar_Libro">Agregar libro</a></li>
 <li><a href="<%=getServletContext().getContextPath() %>/Autor_Listar">Listar autor</a></li>
 <li><a href="<%=getServletContext().getContextPath() %>/Usuario">Cerrar sesión</a></li>
 </ul>
